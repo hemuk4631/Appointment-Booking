@@ -163,7 +163,6 @@ export default function Home() {
                 handleNextStep={handleNextStep}
                 handlePrevStep={handlePrevStep}
                 stepList={stepList}
-                span={2}
               />
             </div>
           </>
@@ -171,7 +170,7 @@ export default function Home() {
         {step === 4 && (
           <>
             <h2>Booking Confirmed! ✅</h2>
-            <h4>Your appointment has been successfully scheduled. You'll receive a confirmation email shortly.</h4>
+            <h4>{`Your appointment has been successfully scheduled. You'll receive a confirmation email shortly.`}</h4>
             <div className="mt-6 grid grid-cols-2 gap-4 text-left w-full">
               <BookedCard span={2} />
             </div>
