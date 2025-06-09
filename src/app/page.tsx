@@ -1,7 +1,6 @@
 'use client';
 import Calender from '@/app/components/Calender';
 import Stepper from '@/app/components/Stepper';
-import Button from '@/app/components/Button';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { InputType } from '@/types/enums';
@@ -12,7 +11,6 @@ import {
 } from '@/store/slices/bookingSlice';
 import TimeSlots from './components/TimeSlots';
 import Form from './components/Form';
-import DetailsCard from './components/detailsCard';
 import BookedCard from './components/BookedCard';
 const UserIcon = '/profile.svg';
 const stepList = [

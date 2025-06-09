@@ -1,7 +1,6 @@
 'use client';
-import { useSelector } from 'react-redux';
 
-import { DayPicker, getDefaultClassNames } from 'react-day-picker';
+import { DayPicker } from 'react-day-picker';
 
 import 'react-day-picker/style.css';
 import Button from './Button';

@@ -7,7 +7,7 @@ import { setAppointment } from '@/store/slices/bookingSlice';
 import { useDispatch } from 'react-redux';
 import SummeryCard from './SummeryCard';
 import { nanoid } from '@reduxjs/toolkit';
-function Form({ formConst, stepList, handlePrevStep, handleNextStep, span }) {
+function Form({ formConst, stepList, handlePrevStep, handleNextStep }) {
   const dispatch = useDispatch();
   const { step, appointment, selectedDate, selectedTime } = useSelector(
     (state) => state.booking
