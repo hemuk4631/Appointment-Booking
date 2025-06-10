@@ -29,6 +29,12 @@ function Form({ formConst, stepList, handlePrevStep, handleNextStep }) {
     e.preventDefault();
     dispatch(setAppointment(formData));
     await handleNextStep();
+    await fetch('/api/appointments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...formData }),
+    });
+
     setFormData({});
   };
   console.log(appointment);

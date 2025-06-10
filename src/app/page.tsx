@@ -2,6 +2,7 @@
 import Calender from '@/app/components/Calender';
 import Stepper from '@/app/components/Stepper';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
 import { InputType } from '@/types/enums';
 import {
@@ -12,6 +13,7 @@ import {
 import TimeSlots from './components/TimeSlots';
 import Form from './components/Form';
 import BookedCard from './components/BookedCard';
+import { useEffect } from 'react';
 const UserIcon = '/profile.svg';
 const stepList = [
   {
@@ -110,6 +112,8 @@ export default function Home() {
   const handlePrevStep = () => {
     dispatch(decrementStep());
   };
+  
+
   return (
     <div className="flex items-center  flex-col p-12 h-">
       <div className="text-center ">
@@ -204,6 +208,7 @@ export default function Home() {
         </div> */}
       </div>
       {/* <div className="px-10 py-4 border border-amber-300 w-2/3 mt-6 rounded-md bg-amber-50 ">`Selected: `</div> */}
+      
     </div>
   );
 }

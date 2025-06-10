@@ -12,8 +12,8 @@ function Stepper({ stepList }) {
           {/* Circle and Label */}
           <div className="flex flex-col items-center z-10 w-full">
             <div
-              className={`w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-300 ${
-                item?.id <= step ? 'bg-blue-400' : 'bg-white'
+              className={`w-10 h-10 flex items-center justify-center rounded-full  transition-all duration-300 ${
+                item?.id <= step ? 'bg-blue-400' : 'bg-gray-200'
               }`}
             >
               <Image src='/admin.svg' alt="user-icon" width={24} height={24} className={`${
