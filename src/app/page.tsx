@@ -2,7 +2,7 @@
 import Calender from '@/app/components/Calender';
 import Stepper from '@/app/components/Stepper';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+
 
 import { InputType } from '@/types/enums';
 import {
@@ -13,7 +13,7 @@ import {
 import TimeSlots from './components/TimeSlots';
 import Form from './components/Form';
 import BookedCard from './components/BookedCard';
-import { useEffect } from 'react';
+
 const UserIcon = '/profile.svg';
 const stepList = [
   {
