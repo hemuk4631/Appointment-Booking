@@ -12,7 +12,6 @@ import {
 import TimeSlots from './TimeSlots';
 import Form from './Form';
 import BookedCard from './BookedCard';
-import Header from './Header';
 
 const UserIcon = '/profile.svg';
 const stepList = [

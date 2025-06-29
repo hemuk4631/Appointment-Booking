@@ -5,7 +5,7 @@ import Table from '../components/Table';
 function Appointments() {
   const [appointments, setAppointments] = useState([]);
   const handleEdit = useCallback((id: string) => {
-    // Route to form or open modal
+   console.log(id);
   },[]);
 
   const handleDelete = useCallback(async (id: string) => {
