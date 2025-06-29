@@ -18,6 +18,8 @@ export default function Calender({
         mode="single"
         selected={selectedDate}
         onSelect={onSelectDate}
+        disabled={{ before: new Date() }}
+        startMonth={new Date()}
         modifiersClassNames={{
           selected: 'bg-blue-500 text-white rounded-full border-none p-[1px]',
           today: 'border border-amber-500 rounded-full',

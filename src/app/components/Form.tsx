@@ -37,7 +37,6 @@ function Form({ formConst, stepList, handlePrevStep, handleNextStep }) {
 
     setFormData({});
   };
-  console.log(appointment);
   return (
     <>
       {formConst?.map((f, i) => (

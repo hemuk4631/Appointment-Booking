@@ -13,7 +13,7 @@ const AppointmentSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    strict: true, // optional, default true — ensures only declared fields are saved
+    strict: true,
   }
 );
 

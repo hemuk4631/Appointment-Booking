@@ -5,7 +5,6 @@ import Table from '../components/Table';
 function Appointments() {
   const [appointments, setAppointments] = useState([]);
   const handleEdit = useCallback((id: string) => {
-    console.log('Edit', id);
     // Route to form or open modal
   },[]);
 
@@ -21,8 +20,7 @@ function Appointments() {
       { Header: 'Phone', accessor: 'clientPhone' },
       {
         Header: 'Date',
-        accessor: (row) => new Date(row.date).toLocaleDateString(),
-        id: 'date',
+        accessor: 'date',
       },
       { Header: 'Time', accessor: 'time' },
       { Header: 'Service', accessor: 'service' },
