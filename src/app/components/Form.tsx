@@ -9,7 +9,7 @@ import SummeryCard from './SummeryCard';
 import { nanoid } from '@reduxjs/toolkit';
 function Form({ formConst, stepList, handlePrevStep, handleNextStep }) {
   const dispatch = useDispatch();
-  const { step, appointment, selectedDate, selectedTime } = useSelector(
+  const { step, selectedDate, selectedTime } = useSelector(
     (state) => state.booking
   );
   const [formData, setFormData] = useState({
