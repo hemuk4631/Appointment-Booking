@@ -35,8 +35,7 @@ This project is deployed using [Vercel](https://vercel.com/).
 - Environment variables are set in the Vercel dashboard.
   
 ## 🖼️ Screenshots
+<img width="1440" height="900" alt="signUp page" src="https://github.com/user-attachments/assets/9e009561-d8b6-4cde-888b-134040534a6f" />
 
-![SignUp page](<img width="1440" height="900" alt="signUp page" src="https://github.com/user-attachments/assets/804749a5-fa92-4d89-93ab-e391e06e4e3a" />
-)
 
 
