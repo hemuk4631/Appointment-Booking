@@ -5,7 +5,7 @@ function Button({ type, onClick, btnType, btnName, className }) {
   return (
 
       <button
-        type={type || 'button'}
+        type={type || "button"}
         onClick={onClick}
         className= {`${primaryClass} py-2 px-10 rounded-md ${className} cursor-pointer`}
       >
