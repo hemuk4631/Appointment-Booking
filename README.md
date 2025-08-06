@@ -1,12 +1,14 @@
-
 ## 🔗 Live Demo
-[View it on Vercel](https://appointment-booking-txkb.vercel.app)
+[View it on Vercel](https://appointment-booking-hdeh.vercel.app/)
+
 ## ⚙️ Tech Stack
 - Next.js
-- Redux toolkit
 - Tailwind CSS
 - React Hook Form
+- Redux-toolkit
+- NextAuth
 - Vercel (for deployment)
+
 
 ## Getting Started
 
@@ -24,15 +26,31 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-
-
-## Deploy on Vercel
+## 📦 Deployment
 
 This project is deployed using [Vercel](https://vercel.com/).
 
 - Push to `main` branch auto-deploys the latest changes.
 - Environment variables are set in the Vercel dashboard.
+  
+## 🖼️ Screenshots
+<img width="1440" height="900" alt="signup" src="https://github.com/user-attachments/assets/e5cd9bc5-6997-4379-8a99-1393d212deba" />
+<img width="1440" height="900" alt="login" src="https://github.com/user-attachments/assets/73b80e2b-1361-4976-8bfa-30cb9d91c1c0" />
+<img width="1440" height="900" alt="home" src="https://github.com/user-attachments/assets/5ca3ae79-09b9-430d-88ec-861d67377dd3" />
+<img width="1440" height="900" alt="dateSelect" src="https://github.com/user-attachments/assets/22079162-5078-4553-b61e-7c060007bda4" />
+<img width="1440" height="900" alt="timeSelect" src="https://github.com/user-attachments/assets/fb29783a-c687-435d-b5e5-20350d4a9928" />
+<img width="1440" height="900" alt="fillDetails" src="https://github.com/user-attachments/assets/6b567492-d8a6-4622-a4a0-97e13f5d8ecc" />
+<img width="1440" height="900" alt="Confirmation" src="https://github.com/user-attachments/assets/1245e287-8c15-41bb-99c2-970dbe66080a" />
+<img width="1440" height="900" alt="appointmet-details" src="https://github.com/user-attachments/assets/562d3cdc-2fbc-40f7-ba16-f333195903f8" />
+
+
+
+
+
+
+
+
+
+
+
