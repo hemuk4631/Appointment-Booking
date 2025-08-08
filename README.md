@@ -1,6 +1,9 @@
 ## 🔗 Live Demo
 [View it on Vercel](https://appointment-booking-hdeh.vercel.app/)
 
+## Demo video
+https://www.loom.com/share/89f7ddf462654ab1956061d7bedbfd22?sid=2dca07bc-ca0a-4c69-8518-9bde469e36ea
+
 ## ⚙️ Tech Stack
 - Next.js
 - Tailwind CSS
@@ -33,6 +36,8 @@ This project is deployed using [Vercel](https://vercel.com/).
 
 - Push to `main` branch auto-deploys the latest changes.
 - Environment variables are set in the Vercel dashboard.
+
+
   
 ## 🖼️ Screenshots
 <img width="1440" height="900" alt="signup" src="https://github.com/user-attachments/assets/e5cd9bc5-6997-4379-8a99-1393d212deba" />
