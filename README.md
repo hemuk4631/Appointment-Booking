@@ -1,5 +1,6 @@
 ## 🔗 Live Demo
-[View it on Vercel](https://appointment-booking-hdeh.vercel.app/)
+[View it on Vercel](appointment-booking-one-lake.vercel.app
+)
 
 ## Demo video
 https://www.loom.com/share/89f7ddf462654ab1956061d7bedbfd22?sid=2dca07bc-ca0a-4c69-8518-9bde469e36ea
