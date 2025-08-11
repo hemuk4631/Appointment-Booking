@@ -2,6 +2,10 @@
 import Calender from '@/app/components/Calender';
 import Stepper from '@/app/components/Stepper';
 import { useDispatch, useSelector } from 'react-redux';
+import CalenderIcon from '../../../public/stepper_icons/calendar-line-icon.svg'
+import TimeIcon from '../../../public/stepper_icons/clock-timing-icon.svg'
+import InfoIcon from '../../../public/stepper_icons/info-circle-line-icon.svg'
+import ConfirmIcon from '../../../public/stepper_icons/check-mark-circle-line-icon.svg'
 
 import { InputType } from '@/types/enums';
 import {
@@ -13,27 +17,26 @@ import TimeSlots from './TimeSlots';
 import Form from './Form';
 import BookedCard from './BookedCard';
 
-const UserIcon = '/profile.svg';
 const stepList = [
   {
     id: 1,
     title: 'Select Date',
-    img: UserIcon,
+    img: CalenderIcon,
   },
   {
     id: 2,
     title: 'Choose Time',
-    img: UserIcon,
+    img: TimeIcon,
   },
   {
     id: 3,
     title: 'Your Details',
-    img: UserIcon,
+    img: InfoIcon,
   },
   {
     id: 4,
     title: 'Confirmation',
-    img: UserIcon,
+    img: ConfirmIcon,
   },
 ];
 const timeSlots = [
@@ -127,11 +130,11 @@ export default function Home() {
         <div className="flex  justify-center w-full my-10">
           <Stepper stepList={stepList} />
         </div>
-        <div className="rounded-md bg-yellow-50 shadow-md p-10 mt-6 text-center w-2/3 flex items-center flex-col">
+        <div className="rounded-md bg-yellow-50 shadow-md p-10 mt-6 text-center md:w-2/3  flex items-center flex-col">
           {step === 1 && (
             <>
-              <h2>Choose Your Date</h2>
-              <h4>Select a date for your appointment</h4>
+              <h2 className='whitespace-nowrap'>Choose Your Date</h2>
+              <h4 className='whitespace-nowrap'>Select a date for your appointment</h4>
               <Calender
                 onSelectDate={onSelectDate}
                 selectedDate={selectedDate}
@@ -161,7 +164,7 @@ export default function Home() {
           {step === 3 && (
             <>
               <h2>Fill Details</h2>
-              <div className="mt-6 grid grid-cols-2 gap-4 text-left w-full">
+              <div className="mt-6 md:grid md:grid-cols-2 gap-4 text-left w-full">
                 <Form
                   formConst={formConst}
                   handleNextStep={handleNextStep}
@@ -175,7 +178,7 @@ export default function Home() {
             <>
               <h2>Booking Confirmed! ✅</h2>
               <h4>{`Your appointment has been successfully scheduled. You'll receive a confirmation email shortly.`}</h4>
-              <div className="mt-6 grid grid-cols-2 gap-4 text-left w-full">
+              <div className="mt-6 md:grid md:grid-cols-2 gap-4 text-left w-full">
                 <BookedCard span={2} />
               </div>
             </>

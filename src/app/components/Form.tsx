@@ -84,7 +84,7 @@ function Form({ formConst, stepList, handlePrevStep, handleNextStep }) {
         <SummeryCard formData={formData} />
       </div>
       <div
-        className={`flex justify-between w-full items-center mt-10 col-span-2`}
+        className={`flex md:flex-row flex-col md:gap-0 gap-4 justify-between w-full items-center mt-10 col-span-2`}
       >
         <Button
           btnName={`Back to ${stepList?.find((s) => s.id === step - 1)?.title}`}
