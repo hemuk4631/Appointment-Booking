@@ -7,7 +7,6 @@ export async function middleware(request: NextRequest) {
     request.cookies.get('__Secure-authjs.session-token')?.value ||
     request.cookies.get('authjs.session-token')?.value;
 
-    console.log('Middleware running on:', request.url);
 
   if (!token) {
     return NextResponse.redirect(new URL('/login', request.url));
@@ -18,8 +17,6 @@ export async function middleware(request: NextRequest) {
     secret: process.env.AUTH_SECRET!,
     salt: 'authjs.session-token',
   });
-
-  console.log('[Middleware] Decoded session:', session);
 
   if (!session || !session.username) {
     return NextResponse.redirect(new URL('/login', request.url));

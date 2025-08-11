@@ -5,7 +5,6 @@ import Table from '../components/Table';
 function Appointments() {
   const [appointments, setAppointments] = useState([]);
   const handleEdit = useCallback((id: string) => {
-   console.log(id);
   },[]);
 
   const handleDelete = useCallback(async (id: string) => {

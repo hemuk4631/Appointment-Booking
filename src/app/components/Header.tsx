@@ -12,7 +12,6 @@ const  Header  = React.memo(function Header(){
   if (status === 'loading') return null;
 
   const user = session?.user;
-  console.log(session);
   const handleLogout = async () => {
     dispatch(resetUser());
     await logoutAction();
