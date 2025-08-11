@@ -27,7 +27,7 @@ const  Header  = React.memo(function Header(){
   const headerTabs = user?.role === 'ADMIN' ? adminTabs : userTabs;
 
   return (
-    <div className="p-6 bg-amber-50 sticky top-0 z-50 flex justify-between">
+    <div className="p-6 w-screen bg-amber-50 sticky top-0 z-50 flex justify-between">
       <div className="flex gap-4">
         {headerTabs.map((ele, i) => (
           <Link key={i} href={ele.pathname}>

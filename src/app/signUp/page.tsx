@@ -18,7 +18,7 @@ export default function LoginPage() {
       // onSubmit={handleSubmit}
       className="flex flex-col items-center justify-center min-h-screen gap-4 px-4"
     >
-      <div className="border-2 rounded-md p-10 flex flex-col gap-4 w-1/3">
+      <div className="border-2 rounded-md p-10 flex flex-col gap-4 md:w-1/3">
         <input
           type="text"
           name="name"

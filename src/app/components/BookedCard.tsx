@@ -28,7 +28,7 @@ function BookedCard({ span }) {
         <h2 className="rounded-t-2xl text-center w-full p-4 bg-green-600 text-white">
           Appointment Details
         </h2>
-        <div className="grid grid-cols-2 gap-4 p-4">
+        <div className="grid md:grid-cols-2 gap-4 p-4">
           <div className="p-4 text-start rounded-xl bg-white border border-gray-200">
             <h4>Date</h4>
             <h6>{appointment.date.toLocaleDateString()}</h6>
@@ -63,9 +63,11 @@ function BookedCard({ span }) {
           </div>
         </div>
       </div>
+      <div className='mt-4'>
       <WhatsNextCard />
+      </div>
       <div
-        className={`flex justify-between w-full items-center mt-10 col-span-2`}
+        className={`flex md:flex-row flex-col gap-4 justify-between w-full items-center mt-10 col-span-2`}
       >
         <Button
           btnName={`Download Details`}

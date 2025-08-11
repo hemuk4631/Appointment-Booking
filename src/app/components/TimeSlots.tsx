@@ -18,7 +18,7 @@ function TimeSlots({
   };
   return (
     <>
-      <div className="grid grid-cols-5 gap-5">
+      <div className="grid md:grid-cols-5 gap-5">
         {timeSlots?.map((t: string, i: number) => (
           <div
             key={i}
@@ -35,7 +35,7 @@ function TimeSlots({
       </div>
 
       <div
-        className={`flex justify-between w-full items-center mt-10 col-span-${span}`}
+        className={`flex justify-between md:flex-row flex-col md:gap-0 gap-4 w-full items-center mt-10 col-span-${span}`}
       >
         <Button
           btnName={`Back to ${stepList?.find((s) => s.id === step - 1)?.title}`}

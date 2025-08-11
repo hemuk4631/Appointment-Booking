@@ -47,16 +47,39 @@ h1 {
   font-weight: bold;
   margin-bottom: 0.1rem;
 }
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+}
 h2 {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 0.1rem;
 }
+
 h3 {
   font-size: 1.2rem;
   font-weight: 400;
   margin-bottom: 0.5rem;
   color: gray;
+}
+@media (max-width: 768px) {
+  h3 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h3 {
+    font-size: 0.9rem;
+  }
 }
 h4 {
   font-size: 1rem;

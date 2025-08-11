@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
     request.cookies.get('__Secure-authjs.session-token')?.value ||
     request.cookies.get('authjs.session-token')?.value;
 
-  console.log('[Middleware] Raw token:', token);
+    console.log('Middleware running on:', request.url);
 
   if (!token) {
     return NextResponse.redirect(new URL('/login', request.url));
