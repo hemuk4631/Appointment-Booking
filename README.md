@@ -1,5 +1,5 @@
 ## 🔗 Live Demo
-[View it on Vercel](appointment-booking-one-lake.vercel.app
+[View it on Vercel](https://appointment-booking-one-lake.vercel.app
 )
 
 ## Demo video
