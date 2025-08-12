@@ -3,26 +3,36 @@ import type { NextRequest } from 'next/server';
 import { decode } from 'next-auth/jwt';
 
 export async function middleware(request: NextRequest) {
-  const token =
-    request.cookies.get('__Secure-authjs.session-token')?.value ||
-    request.cookies.get('authjs.session-token')?.value;
+  try {
+    const token =
+      request.cookies.get('__Secure-authjs.session-token')?.value ||
+      request.cookies.get('authjs.session-token')?.value;
 
+    if (!token) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
 
-  if (!token) {
+    const secret = process.env.NEXTAUTH_SECRET;
+    if (!secret) {
+      console.error('❌ NEXTAUTH_SECRET is missing in environment variables');
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+
+    const session = await decode({
+      token,
+      secret,
+      salt: 'authjs.session-token',
+    });
+
+    if (!session || !session.username) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+
+    return NextResponse.next();
+  } catch (error) {
+    console.error('❌ Middleware error:', error);
     return NextResponse.redirect(new URL('/login', request.url));
   }
-
-  const session = await decode({
-    token,
-    secret: process.env.AUTH_SECRET!,
-    salt: 'authjs.session-token',
-  });
-
-  if (!session || !session.username) {
-    return NextResponse.redirect(new URL('/login', request.url));
-  }
-
-  return NextResponse.next();
 }
 
 export const config = {
