@@ -12,7 +12,6 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const isAuthPage = pathname === '/login';
 
-  // Not logged in
   if (!token) {
     if (!isAuthPage) {
       return NextResponse.redirect(new URL('/login', request.url));
@@ -27,7 +26,7 @@ export async function middleware(request: NextRequest) {
       salt: 'authjs.session-token',
     });
 
-    // Invalid token → redirect to login
+
     if (!session || !session.username) {
       if (!isAuthPage) {
         return NextResponse.redirect(new URL('/login', request.url));
@@ -35,7 +34,6 @@ export async function middleware(request: NextRequest) {
       return NextResponse.next();
     }
 
-    // Logged in & visiting login → go to dashboard
     if (isAuthPage) {
       return NextResponse.redirect(new URL('/', request.url));
     }
@@ -51,7 +49,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // This matcher now EXCLUDES /login from being protected
     '/((?!api/auth|api/.*|_next/static|_next/image|favicon.ico|signUp|login).*)',
   ],
 };
