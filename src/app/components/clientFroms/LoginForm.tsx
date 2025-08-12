@@ -1,13 +1,14 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { signIn } from 'next-auth/react';
-import { toast } from 'sonner';
 import Button from '../Button';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import handleSignIn from '@/utils/loginAction';
+import { toast } from 'sonner';
 
 function LoginForm() {
-
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -20,23 +21,18 @@ function LoginForm() {
     }
 
     const toastId = toast.loading('Logging in...');
+    const error = await handleSignIn(username, password);
 
-    const result = await signIn('credentials', {
-      redirect: false, // prevent automatic redirect
-      username,
-      password,
-    });
-
-    if (!result?.error) {
+    if (!error) {
       toast.success('Login Success', {
         id: toastId,
         position: 'top-right',
       });
-
-      // Full page reload ensures cookie is sent to middleware immediately
-      window.location.href = '/';
+      setTimeout(() => {
+        router.push('/');
+      }, 500);
     } else {
-      toast.error(result.error || 'Login failed', {
+      toast.error(error.message || 'Login failed', {
         id: toastId,
         position: 'top-right',
       });
