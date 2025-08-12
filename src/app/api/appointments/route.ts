@@ -10,7 +10,6 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  console.log(req);
   try {
     await connectDB();
     const body = await req.json();
