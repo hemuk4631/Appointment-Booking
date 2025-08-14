@@ -6,9 +6,7 @@ import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { toast } from 'sonner';
 
-
 function LoginForm() {
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -22,25 +20,25 @@ function LoginForm() {
 
     const toastId = toast.loading('Logging in...');
 
-    const res = await signIn('credentials', {
+    // Don't await if redirect is true, let NextAuth handle the navigation
+    signIn('credentials', {
+      redirect: true,
+      callbackUrl: `${window.location.origin}/`, // absolute URL is safest for prod
       username,
       password,
-      callbackUrl: '/', // Let NextAuth handle the redirect
-      redirect: true,   // Important for production
+    }).then((res) => {
+      if (res?.error) {
+        toast.error(res.error || 'Login failed', {
+          id: toastId,
+          position: 'top-right',
+        });
+      } else {
+        toast.success('Login Success', {
+          id: toastId,
+          position: 'top-right',
+        });
+      }
     });
-
-    if (res?.error) {
-      toast.error(res.error || 'Login failed', {
-        id: toastId,
-        position: 'top-right',
-      });
-    } else {
-      toast.success('Login Success', {
-        id: toastId,
-        position: 'top-right',
-      });
-    
-    }
   };
 
   return (
