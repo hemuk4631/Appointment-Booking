@@ -5,8 +5,10 @@ import Button from '../Button';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 function LoginForm() {
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -24,7 +26,7 @@ function LoginForm() {
       username,
       password,
       callbackUrl: '/', // Let NextAuth handle the redirect
-      redirect: true,   // Important for production
+      // redirect: true,   // Important for production
     });
 
     if (res?.error) {
@@ -37,6 +39,7 @@ function LoginForm() {
         id: toastId,
         position: 'top-right',
       });
+      router.refresh()
       // No need for router.push — redirect happens automatically
     }
   };
