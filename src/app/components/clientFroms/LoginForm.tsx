@@ -5,10 +5,10 @@ import Button from '../Button';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
+
 
 function LoginForm() {
-  const router = useRouter();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
