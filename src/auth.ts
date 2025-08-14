@@ -1,5 +1,5 @@
 import NextAuth from 'next-auth';
-import Google from 'next-auth/providers/google';
+// import Google from 'next-auth/providers/google';
 import Credentials from 'next-auth/providers/credentials';
 import { User } from './models/UserModel';
 import { compare } from 'bcryptjs';
@@ -8,10 +8,10 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   // custom page for login and signup
 
   providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
+    // Google({
+    //   clientId: process.env.GOOGLE_CLIENT_ID,
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    // }),
     Credentials({
       credentials: {
         username: { label: 'Username' },
