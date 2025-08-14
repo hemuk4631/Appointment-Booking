@@ -20,23 +20,31 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       authorize: async (credentials) => {
         const username = credentials?.username as string | undefined;
         const password = credentials?.password as string | undefined;
-        if (!password || !username)
-          throw new CredentialsSignin('Please provide username and password');
-        // todo: connect to db
+      
+        if (!username || !password) {
+          // Returning null tells NextAuth that login failed gracefully
+          return null;
+        }
+      
         const user = await User.findOne({ username }).select('+password');
-        if (!user.password)
-          throw new CredentialsSignin('Invalid username or password');
+        if (!user?.password) {
+          return null;
+        }
+      
         const matched = await compare(password, user.password);
-        if (!matched)
-          throw new CredentialsSignin('Invalid username or password');
+        if (!matched) {
+          return null;
+        }
+      
         return {
           name: user.name,
           email: user.email,
           username: user.username,
           role: user.role,
-          id: user._id,
+          id: user._id.toString(),
         };
-      },
+      }
+      
     }),
   ],
   callbacks: {

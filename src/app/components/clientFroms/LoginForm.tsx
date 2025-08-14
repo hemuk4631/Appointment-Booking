@@ -39,7 +39,7 @@ function LoginForm() {
         id: toastId,
         position: 'top-right',
       });
-      router.refresh()
+      window.location.href = '/'; 
       // No need for router.push — redirect happens automatically
     }
   };
