@@ -26,7 +26,7 @@ function LoginForm() {
       username,
       password,
       callbackUrl: '/', // Let NextAuth handle the redirect
-      // redirect: true,   // Important for production
+      redirect: true,   // Important for production
     });
 
     if (res?.error) {
@@ -39,8 +39,7 @@ function LoginForm() {
         id: toastId,
         position: 'top-right',
       });
-      window.location.href = '/'; 
-      // No need for router.push — redirect happens automatically
+    
     }
   };
 
