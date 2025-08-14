@@ -1,52 +1,46 @@
-import NextAuth from 'next-auth';
-// import Google from 'next-auth/providers/google';
-import Credentials from 'next-auth/providers/credentials';
-import { User } from './models/UserModel';
-import { compare } from 'bcryptjs';
-export const { auth, handlers, signIn, signOut } = NextAuth({
-  // connect to db
-  // custom page for login and signup
+import NextAuth, { CredentialsSignin } from "next-auth";
+import Credentials from "next-auth/providers/credentials";
+import { User } from "./models/UserModel";
+import { compare } from "bcryptjs";
+import { connectDB } from '@/lib/mongodb';
 
+export const { auth, handlers, signIn, signOut } = NextAuth({
   providers: [
-    // Google({
-    //   clientId: process.env.GOOGLE_CLIENT_ID,
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    // }),
     Credentials({
       credentials: {
-        username: { label: 'Username' },
-        password: { label: 'Password', type: 'password' },
+        username: { label: "Username" },
+        password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
+        await connectDB();
         const username = credentials?.username as string | undefined;
         const password = credentials?.password as string | undefined;
-      
+
         if (!username || !password) {
-          // Returning null tells NextAuth that login failed gracefully
-          return null;
+          throw new CredentialsSignin("Please provide username and password");
         }
-      
-        const user = await User.findOne({ username }).select('+password');
+
+        const user = await User.findOne({ username }).select("+password");
         if (!user?.password) {
-          return null;
+          throw new CredentialsSignin("Invalid username or password");
         }
-      
+
         const matched = await compare(password, user.password);
         if (!matched) {
-          return null;
+          throw new CredentialsSignin("Invalid username or password");
         }
-      
+
         return {
+          id: user._id.toString(),
           name: user.name,
           email: user.email,
           username: user.username,
           role: user.role,
-          id: user._id.toString(),
         };
-      }
-      
+      },
     }),
   ],
+
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -71,6 +65,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   },
 
   pages: {
-    signIn: '/login',
+    signIn: "/login",
   },
 });
