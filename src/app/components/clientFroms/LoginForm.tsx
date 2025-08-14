@@ -3,12 +3,10 @@
 import React from 'react';
 import Button from '../Button';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import handleSignIn from '@/utils/loginAction';
+import { signIn } from 'next-auth/react';
 import { toast } from 'sonner';
 
 function LoginForm() {
-  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -21,20 +19,25 @@ function LoginForm() {
     }
 
     const toastId = toast.loading('Logging in...');
-    const error = await handleSignIn(username, password);
 
-    if (!error) {
+    const res = await signIn('credentials', {
+      username,
+      password,
+      callbackUrl: '/', // Let NextAuth handle the redirect
+      redirect: true,   // Important for production
+    });
+
+    if (res?.error) {
+      toast.error(res.error || 'Login failed', {
+        id: toastId,
+        position: 'top-right',
+      });
+    } else {
       toast.success('Login Success', {
         id: toastId,
         position: 'top-right',
       });
-      router.refresh();
-      router.push('/');
-    } else {
-      toast.error(error.message || 'Login failed', {
-        id: toastId,
-        position: 'top-right',
-      });
+      // No need for router.push — redirect happens automatically
     }
   };
 
@@ -58,7 +61,7 @@ function LoginForm() {
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition cursor-pointer"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
         >
           Login
         </button>
@@ -73,7 +76,7 @@ function LoginForm() {
           <span className="text-gray-400">or</span>
           <span className="w-full border-b h-[1px]"></span>
         </div>
-        <Button btnName="Sign in with google" btnType={'secondary'} />
+        <Button btnName="Sign in with Google" btnType={'secondary'} />
       </div>
     </form>
   );
