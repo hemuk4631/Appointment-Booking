@@ -5,8 +5,12 @@ import Button from '../Button';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import handleSignIn from '@/utils/loginAction';
+import { useRouter } from 'next/navigation';
+
+
 
 function LoginForm() {
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -17,7 +21,8 @@ function LoginForm() {
       toast.error('Please provide all fields');
       return;
     }
-    handleSignIn(username, password)
+    await handleSignIn(username, password);
+    router.replace("/");
   };
 
   return (

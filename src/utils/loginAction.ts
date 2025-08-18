@@ -20,7 +20,6 @@ try {
       id: toastId,
       position: 'top-right',
     });
-    window.location.href = '/';
   }
 } catch (err) {
   console.error(err);
