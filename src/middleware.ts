@@ -28,6 +28,7 @@ export async function middleware(request: NextRequest) {
 
 
     if (!session || !session.username) {
+      console.log('not session')
       if (!isAuthPage) {
         return NextResponse.redirect(new URL('/login', request.url));
       }

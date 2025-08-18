@@ -1,19 +1,28 @@
-'use server';
-import { signIn } from '@/auth';
-import { connectDB } from '@/lib/mongodb';
-import { CredentialsSignin } from 'next-auth';
+import { signIn } from 'next-auth/react';
+import { toast } from 'sonner';
 
 const handleSignIn = async (username: string, password: string) => {
-  await connectDB();
-  try {
-    await signIn('credentials', {
-      username,
-      password,
-      redirect: false,
+  const toastId = toast.loading('Logging in...');
+
+  const res = await signIn('credentials', {
+    username,
+    password,
+    redirect: false,
+  });
+
+  if (res?.error) {
+    toast.error(res.error || 'Login failed', {
+      id: toastId,
+      position: 'top-right',
     });
-  } catch (error) {
-    const err = error as CredentialsSignin;
-    return err;
+  } else {
+    toast.success('Login Success', {
+      id: toastId,
+      position: 'top-right',
+    });
+    window.location.href = '/';
   }
 };
+
 export default handleSignIn;
+
