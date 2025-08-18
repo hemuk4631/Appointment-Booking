@@ -15,7 +15,6 @@ export default function LoginPage() {
         const role = formData?.get('role') as string | undefined;
         handleSubmit(name, email, username, password, role);
       }}
-      // onSubmit={handleSubmit}
       className="flex flex-col items-center justify-center min-h-screen gap-4 px-4"
     >
       <div className="border-2 rounded-md p-10 flex flex-col gap-4 md:w-1/3">

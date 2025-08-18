@@ -3,8 +3,8 @@
 import React from 'react';
 import Button from '../Button';
 import Link from 'next/link';
-import { signIn } from 'next-auth/react';
 import { toast } from 'sonner';
+import handleSignIn from '@/utils/loginAction';
 
 function LoginForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -17,28 +17,7 @@ function LoginForm() {
       toast.error('Please provide all fields');
       return;
     }
-
-    const toastId = toast.loading('Logging in...');
-
-    // Don't await if redirect is true, let NextAuth handle the navigation
-    signIn('credentials', {
-      redirect: true,
-      callbackUrl: `${window.location.origin}/`, // absolute URL is safest for prod
-      username,
-      password,
-    }).then((res) => {
-      if (res?.error) {
-        toast.error(res.error || 'Login failed', {
-          id: toastId,
-          position: 'top-right',
-        });
-      } else {
-        toast.success('Login Success', {
-          id: toastId,
-          position: 'top-right',
-        });
-      }
-    });
+    handleSignIn(username, password)
   };
 
   return (
