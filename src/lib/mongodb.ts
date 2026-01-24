@@ -13,6 +13,7 @@ export async function connectDB() {
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGODB_URI, {
       bufferCommands: false,
+      family: 4, // Force IPv4 for better corporate network compatibility
     }).then((mongoose) => {
       return mongoose;
     });

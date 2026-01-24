@@ -183,34 +183,7 @@ export default function Home() {
               </div>
             </>
           )}
-          {/* <div
-          className={`flex ${
-            step > 1 ? 'justify-between' : 'justify-end'
-          }  w-full items-center mt-10`}
-        >
-          {step > 1 && step <= stepList?.length && (
-            <Button
-              btnName={`Back to ${
-                stepList?.find((s) => s.id === step - 1)?.title
-              }`}
-              btnType={'secondary'}
-              onClick={handlePrevStep}
-            />
-          )}
-          {(step === 1
-            ? selectedDate && step <= stepList?.length
-            : selectedTime && step <= stepList?.length) && (
-            <Button
-              btnName={`Continue to ${
-                stepList?.find((s) => s.id === step + 1)?.title
-              }`}
-              btnType={'primary'}
-              onClick={handleNextStep}
-            />
-          )}
-        </div> */}
         </div>
-        {/* <div className="px-10 py-4 border border-amber-300 w-2/3 mt-6 rounded-md bg-amber-50 ">`Selected: `</div> */}
       </div>
     </>
   );

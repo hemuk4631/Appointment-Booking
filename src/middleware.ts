@@ -4,10 +4,16 @@ import { decode } from 'next-auth/jwt';
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  console.log("--- Middleware Start ---");
+  console.log("Pathname:", pathname);
 
   const token =
+    request.cookies.get('__Secure-authjs.session-token')?.value ||
+    request.cookies.get('authjs.session-token')?.value ||
     request.cookies.get('__Secure-next-auth.session-token')?.value ||
     request.cookies.get('next-auth.session-token')?.value;
+
+  console.log("Token Cookie Found:", !!token);
 
   const isAuthPage = pathname === '/login';
 
@@ -22,6 +28,9 @@ export async function middleware(request: NextRequest) {
     const session = await decode({
       token,
       secret: process.env.NEXTAUTH_SECRET!,
+      salt: token.startsWith('__Secure-')
+        ? '__Secure-authjs.session-token'
+        : 'authjs.session-token',
     });
 
     if (!session) {
