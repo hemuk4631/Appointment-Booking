@@ -20,12 +20,10 @@ interface Appointment {
 
 interface Props {
   data: Appointment[];
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
-  columns: [];
+  columns: any[];
 }
 
-const Table: React.FC<Props> = ({ data, columns  }) => {
+const Table: React.FC<Props> = ({ data, columns }) => {
  
 
   const {

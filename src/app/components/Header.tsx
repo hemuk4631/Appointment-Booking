@@ -17,13 +17,15 @@ const  Header  = React.memo(function Header(){
     await logoutAction();
   };
 
-  const userTabs = [{ title: 'Home', pathname: '/' }];
+  const userTabs = [
+    { title: 'Home', pathname: '/' },
+  ];
   const adminTabs = [
     { title: 'Home', pathname: '/' },
     { title: 'Appointments', pathname: '/appointments' },
   ];
 
-  const headerTabs = user?.role === 'ADMIN' ? adminTabs : userTabs;
+  const headerTabs = user?.role?.toLowerCase() === 'admin' ? adminTabs : userTabs;
 
   return (
     <div className="p-6 w-screen bg-amber-50 sticky top-0 z-50 flex justify-between">
