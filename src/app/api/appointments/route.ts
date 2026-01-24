@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongodb';
 import AppointmentModel from '@/models/Appointment';
-const Appointment = AppointmentModel as any;
+const Appointment = AppointmentModel;
 import { auth } from '@/auth';
 
 export async function GET() {
