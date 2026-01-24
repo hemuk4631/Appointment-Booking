@@ -1,58 +1,28 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import { decode } from 'next-auth/jwt';
+import NextAuth from "next-auth";
+import { authConfig } from "./auth.config";
+import { NextResponse } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  
+const { auth } = NextAuth(authConfig);
 
-  const token =
-    request.cookies.get('__Secure-authjs.session-token')?.value ||
-    request.cookies.get('authjs.session-token')?.value ||
-    request.cookies.get('__Secure-next-auth.session-token')?.value ||
-    request.cookies.get('next-auth.session-token')?.value;
+export default auth((req) => {
+  const { nextUrl } = req;
+  const isLoggedIn = !!req.auth;
 
-  const isAuthPage = pathname === '/login';
+  const isAuthPage = nextUrl.pathname === '/login';
+  const isPublicPage = ['/login', '/signUp'].includes(nextUrl.pathname);
 
-  if (!token) {
-    if (!isAuthPage) {
-      return NextResponse.redirect(new URL('/login', request.url));
-    }
-    return NextResponse.next();
+  if (isAuthPage && isLoggedIn) {
+    return NextResponse.redirect(new URL("/", nextUrl));
   }
 
-  try {
-    const session = await decode({
-      token,
-      secret: process.env.NEXTAUTH_SECRET!,
-      salt: token.startsWith('__Secure-')
-        ? '__Secure-authjs.session-token'
-        : 'authjs.session-token',
-    });
-
-    if (!session) {
-      if (!isAuthPage) {
-        return NextResponse.redirect(new URL('/login', request.url));
-      }
-      return NextResponse.next();
-    }
-
-    if (isAuthPage) {
-      return NextResponse.redirect(new URL('/', request.url));
-    }
-
-    return NextResponse.next();
-  } catch (error) {
-    console.error('JWT Decode Error:', error);
-    if (!isAuthPage) {
-      return NextResponse.redirect(new URL('/login', request.url));
-    }
-    return NextResponse.next();
+  if (!isLoggedIn && !isPublicPage) {
+    return NextResponse.redirect(new URL("/login", nextUrl));
   }
-}
+
+  return NextResponse.next();
+});
 
 export const config = {
-  matcher: [
-    '/((?!api/auth|_next/static|_next/image|favicon.ico|signUp|login).*)',
-  ],
+  matcher: ["/((?!api/auth|_next/static|_next/image|favicon.ico).*)"],
 };
+

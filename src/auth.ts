@@ -3,9 +3,10 @@ import Credentials from "next-auth/providers/credentials";
 import { User } from "./models/UserModel";
 import { compare } from "bcryptjs";
 import { connectDB } from '@/lib/mongodb';
-
+import { authConfig } from "./auth.config";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  ...authConfig,
   secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
   trustHost: true,
   providers: [
@@ -15,7 +16,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
-        
         await connectDB();
         const username = credentials?.username as string | undefined;
         const password = credentials?.password as string | undefined;
@@ -44,31 +44,5 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       },
     }),
   ],
-
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.name = user.name;
-        token.email = user.email;
-        token.username = user.username;
-        token.role = user.role;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      if (token) {
-        session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.username = token.username;
-        session.user.role = token.role;
-      }
-      return session;
-    },
-  },
-
-  pages: {
-    signIn: "/login",
-  },
 });
+
