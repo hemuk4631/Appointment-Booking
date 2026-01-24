@@ -16,6 +16,7 @@ import {
 import TimeSlots from './TimeSlots';
 import Form from './Form';
 import BookedCard from './BookedCard';
+import { RootState } from '@/store/store';
 
 const stepList = [
   {
@@ -103,11 +104,11 @@ const formConst = [
 
 export default function Home() {
   const { step, selectedDate, selectedTime } = useSelector(
-    (state) => state.booking
+    (state: RootState) => state.booking
   );
   const dispatch = useDispatch();
   const onSelectDate = (date: string) => {
-    dispatch(setSelectedDate(date));
+    dispatch(setSelectedDate(new Date(date)));
   };
   const handleNextStep = () => {
     dispatch(incrementStep());

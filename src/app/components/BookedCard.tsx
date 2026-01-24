@@ -4,16 +4,17 @@ import { resetBooking } from '@/store/slices/bookingSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import WhatsNextCard from './WhatsNextCard';
 import Button from '@/app/components/Button';
-function BookedCard({ span }) {
+import { RootState } from '@/store/store';
+function BookedCard({ span }: { span: number }) {
   const dispatch = useDispatch();
-  const { appointment } = useSelector((state) => state.booking);
+  const { appointment } = useSelector((state: RootState) => state.booking);
   const geneRatePdf = () => {
     const doc = new jsPDF();
     doc.text('Appointment Booking Details', 10, 10);
     doc.text(`Name: ${appointment.clientName}`, 10, 20);
     doc.text(`Email: ${appointment.clientEmail}`, 10, 30);
     doc.text(`Phone: ${appointment.clientPhone}`, 10, 40);
-    doc.text(`Date: ${appointment.date.toLocaleDateString()}`, 10, 50);
+    doc.text(`Date: ${appointment.date?.toLocaleDateString()}`, 10, 50);
     doc.text(`Time: ${appointment.time}`, 10, 60);
     doc.save('Appointment.pdf');
   };
@@ -31,7 +32,7 @@ function BookedCard({ span }) {
         <div className="grid md:grid-cols-2 gap-4 p-4">
           <div className="p-4 text-start rounded-xl bg-white border border-gray-200">
             <h4>Date</h4>
-            <h6>{appointment.date.toLocaleDateString()}</h6>
+            <h6>{appointment.date?.toLocaleDateString()}</h6>
           </div>
           <div className="p-4 text-start rounded-xl bg-white border border-gray-200">
             <h4>Time</h4>

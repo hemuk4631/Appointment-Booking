@@ -7,10 +7,19 @@ import { setAppointment } from '@/store/slices/bookingSlice';
 import { useDispatch } from 'react-redux';
 import SummeryCard from './SummeryCard';
 import { nanoid } from '@reduxjs/toolkit';
-function Form({ formConst, stepList, handlePrevStep, handleNextStep }) {
+import { RootState } from '@/store/store';
+
+interface FormProps {
+  formConst: any[];
+  stepList: any[];
+  handlePrevStep: () => void;
+  handleNextStep: () => void;
+}
+
+function Form({ formConst, stepList, handlePrevStep, handleNextStep }: FormProps) {
   const dispatch = useDispatch();
   const { step, selectedDate, selectedTime } = useSelector(
-    (state) => state.booking
+    (state: RootState) => state.booking
   );
   const [formData, setFormData] = useState({
     id: nanoid(),
@@ -22,10 +31,10 @@ function Form({ formConst, stepList, handlePrevStep, handleNextStep }) {
     service: '',
     notes: '',
   });
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(setAppointment(formData));
     await handleNextStep();
@@ -35,7 +44,16 @@ function Form({ formConst, stepList, handlePrevStep, handleNextStep }) {
       body: JSON.stringify({ ...formData }),
     });
 
-    setFormData({});
+    setFormData({
+      id: nanoid(),
+      date: selectedDate,
+      time: selectedTime,
+      clientName: '',
+      clientEmail: '',
+      clientPhone: '',
+      service: '',
+      notes: '',
+    });
   };
   return (
     <>
