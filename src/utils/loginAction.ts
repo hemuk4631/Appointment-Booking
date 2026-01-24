@@ -3,7 +3,6 @@ import { toast } from 'sonner';
 
 const handleSignIn = async (username: string, password: string) => {
   const toastId = toast.loading('Logging in...');
-  console.log("Login Attempt:", { username });
 
   try {
     const res = await signIn('credentials', {
@@ -12,7 +11,7 @@ const handleSignIn = async (username: string, password: string) => {
       redirect: false,
     });
     
-    console.log("Full SignIn Response Object:", JSON.stringify(res));
+  
 
     if (res?.error) {
        console.error("Login Error from Provider:", res.error);
@@ -30,7 +29,6 @@ const handleSignIn = async (username: string, password: string) => {
     } 
 
     if (res?.ok) {
-      console.log("Login Success - Redirecting...");
       toast.success('Login Success', {
         id: toastId,
         position: 'top-right',

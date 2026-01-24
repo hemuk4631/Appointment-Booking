@@ -30,7 +30,6 @@ function LoginForm() {
     const success = await handleSignIn(username, password);
 
     if (success) {
-      console.log("success")
       window.location.href = "/";
     } else {
       setLoading(false);

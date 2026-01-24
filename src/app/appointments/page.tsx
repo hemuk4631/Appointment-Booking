@@ -14,7 +14,6 @@ function Appointments() {
   const fetchAppointments = useCallback(async () => {
     const res = await fetch('/api/appointments');
     const data = await res.json();
-    console.log(data);
     setAppointments(data);
   }, []);
 

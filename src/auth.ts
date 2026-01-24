@@ -4,9 +4,6 @@ import { User } from "./models/UserModel";
 import { compare } from "bcryptjs";
 import { connectDB } from '@/lib/mongodb';
 
-console.log("Auth Config Loaded");
-console.log("NextAuth Secret present:", !!process.env.NEXTAUTH_SECRET);
-console.log("Auth Secret present:", !!process.env.AUTH_SECRET);
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
@@ -18,7 +15,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
-        console.log("Authorize called with:", { username: credentials?.username });
+        
         await connectDB();
         const username = credentials?.username as string | undefined;
         const password = credentials?.password as string | undefined;
@@ -50,7 +47,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 
   callbacks: {
     async jwt({ token, user }) {
-      console.log("JWT Callback - User present:", !!user);
       if (user) {
         token.id = user.id;
         token.name = user.name;
@@ -61,7 +57,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      console.log("Session Callback - Token present:", !!token);
       if (token) {
         session.user.id = token.id;
         session.user.name = token.name;
